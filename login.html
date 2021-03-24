@@ -1,0 +1,155 @@
+<html>
+<body>
+<style>
+@import url(https://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- https://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(https://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+
+body {
+	background: #f4f4f4;
+	color: #5a5656;
+  display: grid;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+  place-items: center;
+}
+
+a { text-decoration: none; }
+
+h1 { font-size: 1em; }
+
+h1, p {
+	margin-bottom: 10px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.uppercase { text-transform: uppercase; }
+
+/* ---------- LOGIN ---------- */
+
+#login {
+	margin: 50px auto;
+	width: 300px;
+}
+input::placeholder
+{
+
+}
+
+
+.sign_up{
+  appearance: none;
+	background-color: #008dde;
+	border: none;
+	border-radius: 3px;
+	color: #f4f4f4;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	text-transform: uppercase;
+	width: 100px;
+}
+
+
+form fieldset input[type="text"],
+input[type="password"] {
+  appearance: none;
+	background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 280px;
+	animation-name: shake, glow-red;
+    animation-duration: 0.7s, 0.35s;
+    animation-iteration-count: 1, 2;
+		
+}
+@keyframes shake {
+  0%, 20%, 40%, 60%, 80% {
+    transform: translateX(8px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-8px);
+  }
+}
+
+@keyframes glow-red {
+  50% {
+    border-color: indianred;
+  }
+}
+
+form fieldset input[type="submit"] {
+  appearance: none;
+	background-color: #008dde;
+	border: none;
+	border-radius: 3px;
+	color: #f4f4f4;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	text-transform: uppercase;
+	width: 300px;
+}
+
+form fieldset a {
+	color: #5a5656;
+	font-size: 10px;
+}
+
+form fieldset a:hover { text-decoration: underline; }
+
+
+
+
+</style>
+<div id="login">
+
+<button class="sign_up" onclick="location.href='signup.html';">SIGN UP</button>
+  <h1><strong>Welcome.</strong> Please login.</h1>
+
+  <form action="http://localhost:8080/login_post" method="POST">
+
+    <fieldset>
+
+      <p><input type="text" name="Email" required value="" placeholder="Email"></p>
+
+      <p><input type="password" name="Password"required value="" placeholder="Password"></p>
+
+      <p><a href="#">Forgot Password?</a></p>
+
+      <p><input type="submit" value="Login"></p>
+
+    </fieldset>
+
+  </form>
+
+
+</div>
+</body>
+</html>

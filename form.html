@@ -1,0 +1,234 @@
+<html>
+<body>
+<style>
+@import url(https://weloveiconfonts.com/api/?family=fontawesome);
+
+/* ---------- ERIC MEYER'S RESET CSS ---------- */
+/* ---------- https://meyerweb.com/eric/tools/css/reset/ ---------- */
+
+@import url(https://meyerweb.com/eric/tools/css/reset/reset.css);
+
+/* ---------- FONTAWESOME ---------- */
+
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/* ---------- GENERAL ---------- */
+
+body {
+	background: #f4f4f4;
+	color: #5a5656;
+  display: grid;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  min-height: 100vh;
+  place-items: center;
+}
+
+a { text-decoration: none; }
+
+h1 { font-size: 1em; }
+
+h1, p {
+	margin-bottom: 10px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.uppercase { text-transform: uppercase; }
+
+/* ---------- LOGIN ---------- */
+
+#login {
+	margin: 50px auto;
+	width: 300px;
+}
+input::placeholder
+{
+
+}
+
+
+.sign_up{
+  appearance: none;
+	background-color: #008dde;
+	border: none;
+	border-radius: 3px;
+	color: #f4f4f4;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	text-transform: uppercase;
+	width: 100px;
+}
+
+form fieldset textarea {
+  appearance: none;
+	background: #e5e5e5;
+	border: none;
+	resize: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 100px;
+	outline: none;
+	padding: 0px 10px;
+	width: 280px;
+	animation-name: shake, glow-red;
+    animation-duration: 0.7s, 0.35s;
+    animation-iteration-count: 1, 2;
+		
+}
+
+form fieldset input[type="text"],
+input[type="password"] {
+  appearance: none;
+	background: #e5e5e5;
+	border: none;
+	border-radius: 3px;
+	color: #5a5656;
+	font-family: inherit;
+	font-size: 14px;
+	height: 50px;
+	outline: none;
+	padding: 0px 10px;
+	width: 280px;
+	animation-name: shake, glow-red;
+    animation-duration: 0.7s, 0.35s;
+    animation-iteration-count: 1, 2;
+		
+}
+@keyframes shake {
+  0%, 20%, 40%, 60%, 80% {
+    transform: translateX(8px);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-8px);
+  }
+}
+
+@keyframes glow-red {
+  50% {
+    border-color: indianred;
+  }
+}
+
+form fieldset input[type="submit"] {
+  appearance: none;
+	background-color: #008dde;
+	border: none;
+	border-radius: 3px;
+	color: #f4f4f4;
+	cursor: pointer;
+	font-family: inherit;
+	height: 50px;
+	text-transform: uppercase;
+	width: 300px;
+}
+
+form fieldset a {
+	color: #5a5656;
+	font-size: 10px;
+}
+
+form fieldset a:hover { text-decoration: underline; }
+
+
+
+
+</style>
+<button class="sign_up">Record</button>
+<div id="login">
+
+
+  <h1><strong>Sample QRCODE.</strong> Enter Details.</h1>
+  
+ 
+<p><canvas id="qr-code"></canvas><br/></p>
+  <form  id="usrform" onSubmit="downloadCanvas()" action="http://localhost:8080/qrform_post" method="POST"  >
+
+    <fieldset>
+
+      <p><input type="text" name="Name_of_Manufacture" id="f1" required value="" placeholder="Name of Manufacture"></p>
+
+      <p><input type="text" name="Registeration_Number" id="f2" required value="" placeholder="Registeration Number(CIN last 6 digits	)"></p>
+	  
+	  <p><input type="text" name="Batch_Number" id="f3" required value="" placeholder="Batch Number"></p>
+	  
+	  <p><input type="text" name="Product_Name" id="f4" required value="" placeholder="Product Name"></p>
+	  
+	  <p><input type="text" name="Number_Products_in_Batch" id="f5" required value="" placeholder="Number Products in Batch"></p>
+	  	  
+	  <p><textarea name="comment" form="usrform" id="f6" value="" placeholder="Enter text here..."></textarea></p>
+				
+      <p><input type="submit" value="Generate"></p>
+	  
+
+    </fieldset>
+
+  </form>
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js"></script>
+<script>
+
+qr = new QRious({
+                    element: document.getElementById('qr-code'),
+                    size: 200,
+                    value: 'Name of Manufacture:XYZ ltd\nRegisteration Number: U72200MH2009PLC123456\nBatch Number:A1\nUniqueID:AAAA\nProduct Info'
+                });
+function downloadCanvas()
+{  var zip = new JSZip();
+zip.file("Hello.txt", "Hello World\n");
+var img = zip.folder("images");
+	var t1=document.getElementById("f1").value;
+	var t2=document.getElementById("f2").value;
+	var t3=document.getElementById("f3").value;
+	var t4=document.getElementById("f4").value;
+	var t5=document.getElementById("f5").value;
+	var t6=document.getElementById("f6").value;
+	
+	
+    // get canvas data  
+	for (i=0;i<Number(t5);i++)
+	{
+	var uid=t2+t1.substr(0,1)+t3+i;
+	var formData = new FormData();
+	
+	var canvas =  new QRious({
+                    element: document.getElementById('qr-code'),
+                    size: 200,
+                    value: "Name of Manufacture:"+t1+"\nCIN:"+t2+"\nBatch Number:"+t3+"\nProduct Name:"+t4+"\nUID:"+uid+i+"\nAbout:"+t6
+                });  
+	
+	var image = canvas.toDataURL();
+	var split=image.split(",")
+	console.log(split[1]);
+	img.file(uid+".png", split[1], {base64:true});
+   
+    
+	}
+zip.generateAsync({type:"blob"})
+.then(function(content) {
+    // see FileSaver.js
+    saveAs(content, t3+".zip");
+});	
+}
+</script>
+</body>
+</html>
+
+
+
